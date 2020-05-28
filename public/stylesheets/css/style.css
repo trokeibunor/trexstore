@@ -1,0 +1,26 @@
+.store-head{
+    background-image: url({{/public/images/lake.jpg}});
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#searchbtn{
+    border-radius: 50px;
+    outline: floralwhite;
+}
+.header{
+    background-color: burlywood;
+    background-size: contain;
+}
+.categories-header{
+    background-color: burlywood;
+    background-size: contain;
+}
+.sticky-footer{
+    background-color: burlywood;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.review-submit{
+    background-color: burlywood;
+    border-radius: 50px;
+}
