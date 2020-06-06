@@ -1,0 +1,56 @@
+.jumbotron-fluid{
+    padding-bottom: 2rem;
+    height: 30rem;
+    color: floralwhite;
+    background-image: url(/images/armchair.jpg);
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-blend-mode: lighten;
+    image-rendering: auto;
+}
+#searchbtn{
+    border-radius: 50px;
+    outline: floralwhite;
+}
+.header{
+    background-color: rgb(112, 87, 51);
+    background-size: contain;
+    background-clip: inherit;
+    transition: inherit;
+}
+.sticky-footer{
+    background-color: burlywood;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.review-submit{
+    background-color: burlywood;
+    border-radius: 50px;
+}
+.about-page{
+    padding-bottom: 2rem;
+    height: max-content;
+    background-image: url(/images/grocery.jpg);
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-blend-mode: lighten;
+    image-rendering: auto;
+}
+.about-header{
+    background-color: burlywood; 
+    background-size: contain;
+}
+#contact_image{
+    padding-bottom: 2rem;
+    height: 30rem;
+    background-image: url(/images/personpointing.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: saturation;
+    image-rendering: auto;
+}

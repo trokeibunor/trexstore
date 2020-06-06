@@ -1,1 +1,82 @@
-<h5>about us</h5>
+<div class="container-fluid about-page">
+    <header class="about-header p-0 my-mx-0">
+        <nav class="navbar navbar-light">
+            <a class="navbar-brand">trEX stores</a>
+            <a href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 576 512">
+                <path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 
+                16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67
+                148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12
+                12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15
+                301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/>
+                </svg>
+            </a>
+        </nav>
+    </header>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-lg-4">
+            <div class="card shadow p-2 my-mx-2 text-center">
+                <div class="card body">
+                    <p class="lead display-5">About Us</p>
+                    <hr>
+                    <p class="lead text-wrap p-1">
+                            trEX tech was founded by Okeibunor Emmanuel in 2020 to be the first indigeneous Nigerian firm
+                        to be able to compete on the global scale. We would always ensure that your privacy is our uttermost priority 
+                        trEX stores ensures the most stable and most diversified payment systems in the world to enable users  enjoy 
+                        the comfort of online shopping without having to switch to a particular payment method.
+                        You should be informed that our delivery fee is included
+                        in price tag so do not worry immediatly after payment you are set to go as no extra charges would be added.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm d-lg-none d-md-none">
+            <!-- empty div for better UI -->
+        </div>
+        <div class="col-sm-12 col-lg-8 col-md-8">
+            <div class="card shadow p-2 my-mx-2 text-center">
+                <div class="card-body">
+                    <p class="card-brand lead display-5">
+                        Contact Us
+                    </p>
+                    <br>
+                    <form action="/thankyou" method="post">
+                        <p class="lead">We have an amazing team contact Us today</p>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="Email">Email:</label>
+                                </div>
+                                <div class="col-10">
+                                    <input type="email" name="email" class="form-control" id="email-contact">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="Email">Review:</label>
+                                </div>
+                                <div class="col-10">
+                                    <textarea name="review" id="reviw-contact" class="form-control" 
+                                    placeholder="We'll get back to you shortly"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-primary btn-block" type="submit" role="button">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+         <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header bg-light">Testimonies</div>
+            </div>
+        </div>
+    </div>
+<br>
+{{> footer}}

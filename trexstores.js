@@ -22,15 +22,53 @@ var handlebars = require('express-handlebars')
 // })
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
+
+//domain error handler
+app.use(function(req,res,next){
+    var domain = require('domain').create();
+    domain.on('error',function(err){
+        console.error('DOMAIN CAUGHT ERROR /n' ,err.stack)
+        try {
+            setTimeout(() => {
+                console.error('failsafe shutdown')
+                process.exit(1)
+            }, 5000);
+            var worker = require ('cluster').worker;
+            if(worker){
+                worker.disconnect()
+            }
+            server.close();
+            try {
+                next(err)
+            } catch (err) {
+                console.log('Express server mechanism /n' ,err.stack)
+                res.statusCode = 500;
+                res.setHeader = ('content-type','text-plain');
+                res.end('Server error');
+            }
+        } catch (err) {
+            console.error('Couldn\'t open 500 error', err.stack)
+        }
+        domain.add(req);
+        domain.add(res);
+        domain.run(next);
+    })
+})
+
 app.use(express.static(__dirname + '/public'));
 app.use(require('body-parser')())
 app.use(require('cookie-parser')(credentials.cookiesecret))
-// app.use(require('express-session'))
+app.use(require('express-session'))
 app.use(function(req,res,next){
     res.locals.flash = res.sessions.flash
     next()
 })
-
+app.use(function(req,res,next){
+    var cluster = require('cluster');
+    if(cluster.isWorker){
+        console.log('worker %d recieved request' + cluster.worker.id)
+    }
+})
 //routes
 app.get ('/', function(req,res){
     res.render('home');
@@ -69,7 +107,14 @@ app.use(function(err,req,res,next){
     res.status('500');
     res.render('500')
 })
-app.listen(app.get('port'),function(){
-    console.log ('server has started on PORT' + app.get('env') +'in'+
-    app.get('port') + '; press ctrl-c to stop server')
-})
+function startServer(){
+    app.listen(app.get('port'),function(){
+        console.log ('server has started on PORT' + app.get('env') +'in'+
+        app.get('port') + '; press ctrl-c to stop server')
+    })
+}
+if(require.main === module){
+    startServer()
+}else{
+    module.exports = startServer()
+}
