@@ -16,5 +16,5 @@ if(cluster.isMaster){
         startWorker();
     })
 }else{
-    require('./trexstores')
+    require('./trexstores.js')
 }

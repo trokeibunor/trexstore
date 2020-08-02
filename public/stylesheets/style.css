@@ -1,7 +1,12 @@
+body{
+    font: outline;
+    font-style: italic;
+    font-family: cursive;
+}
 .jumbotron-fluid{
     padding-bottom: 2rem;
     height: 30rem;
-    color: floralwhite;
+    color: rgb(114, 113, 111);
     background-image: url(/images/armchair.jpg);
     background-size: cover;
     background-repeat: repeat;
@@ -9,30 +14,49 @@
     background-position: center;
     background-blend-mode: lighten;
     image-rendering: auto;
+    font: outline;
+    font-style: italic;
+    font-family: cursive;
+    font-weight: 700;
+    font-size: 3rem;
+}
+.text-mute{
+    font-size: 1rem;
+    color: ghostwhite;
+}
+.featured{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font: outline;
+    font-style: italic;
 }
 #searchbtn{
     border-radius: 50px;
     outline: floralwhite;
 }
 .header{
-    background-color: rgb(112, 87, 51);
+    color: rgb(114, 113, 111);
+    background-color: rgb(63, 50, 33);
     background-size: contain;
     background-clip: inherit;
     transition: inherit;
+    font: outline;
+    font-style: italic;
+    font-family: cursive;
 }
 .sticky-footer{
-    background-color: burlywood;
+    color: ghostwhite;
+    background-color: rgb(63, 50, 33);
     background-size: contain;
     background-repeat: no-repeat;
 }
 .review-submit{
-    background-color: burlywood;
+    background-color: rgb(63, 50, 33);
     border-radius: 50px;
 }
 .about-page{
     padding-bottom: 2rem;
     height: max-content;
-    background-image: url(/images/grocery.jpg);
+    background-color: rgb(63, 50, 33);
     background-size: cover;
     background-repeat: repeat;
     background-attachment: fixed;
@@ -41,7 +65,7 @@
     image-rendering: auto;
 }
 .about-header{
-    background-color: burlywood; 
+    background-color: rgb(63, 50, 33);
     background-size: contain;
 }
 #contact_image{
@@ -53,4 +77,18 @@
     background-position: center;
     background-blend-mode: saturation;
     image-rendering: auto;
+}
+#featuredImage:hover{
+    background-color: rgb(247, 244, 244);
+    padding: -2px -2px -2px -2px;
+    border-color: black;
+}
+.btn-sm{
+    border-radius: 50px;
+}
+.img-fluid:hover{
+    transform: scale(0.8);
+}
+.media:hover{
+    background-color: ivory;
 }
