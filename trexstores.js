@@ -3,11 +3,13 @@ var credentials = require('./public/lib/credentials.js');
 var emailService = require('./public/lib/email.js')(credentials);
 var app = express();
 var mongoose = require('mongoose');
-var products = require('./public/models/products')
+var product = require('./public/models/products.js');
 var opts = {
     server: {
         socketOptions:{ keepAlive: 1 }
-    }
+    },
+    useNewUrlParser:true,
+    useUnifiedTopology:true,
 }
 app.set('port', process.env.PORT || 3000)
 
@@ -40,10 +42,14 @@ app.set('view engine', 'handlebars');
 switch(app.get('env')){
     case 'development' : 
         mongoose.connect(credentials.mongo.development.connectionString,opts)
+            .then(()=>console.log('mongodb connected in development mode'))
+            .catch((err)=>console.log(err))
         break;
     case 'production' :
         mongoose.connect(credentials.mongo.producton.connectionString,opts)
-        break;
+        .then(()=>console.log('mongodb connected in production mode'))
+        .catch((err)=>console.log(err))
+        break; 
     default :
         throw new Error('Unable to load enviroment: ' + app.get('env'));      
 }
@@ -82,13 +88,7 @@ app.use(function(req,res,next){
 app.use(express.static(__dirname + '/public'));
 app.use(require('body-parser')())
 app.use(require('cookie-parser')(credentials.cookiesecret))
-app.use(require('express-session')())
-
-//USING SESSIONS TO IMPLEMENT FLASH MESSAGES
-// app.use(function(req,res,next){
-//     res.locals.flash = res.sessions.flash
-//     next()
-// })
+app.use(require('express-session')());
 // CLUSTER checking
 app.use(function(req,res,next){
     var cluster = require('cluster');
@@ -100,11 +100,49 @@ app.use(function(req,res,next){
 // PAGE testing
 app.use(function(req,res,next){
     res.locals.showTest = app.get('env') !== 'production' &&
-     req.query.test === '1'
-     next()
+    req.query.test === '1'
+    next()
+})
+//test Products to be removed for production
+product.find(function(err,products){
+    if(products.length){
+        return;
+    }else{
+        console.log(err)
+    }
+    new product({
+        name: 'sneakers',
+        slug: 'nike',
+        categories:['fashion','best deals'],
+        sku: 'nike sneakers',
+        description: 'nike airforce',
+        priceInCents: 1300,
+        tags:['sneakers','shoe','fashion'],
+        available: true,
+    }).save();
+    new product({
+        name: 'brogues',
+        slug: 'nike',
+        categories:['fashion','best deals'],
+        sku: 'malefootware',
+        description: 'Nice london brogues',
+        priceInCents: 1300,
+        tags:['classic','shoe','fashion'],
+        available: true,
+    }).save();
+    new product({
+        name: 'monk straps',
+        slug: 'shoe',
+        categories:['fashion','best deals'],
+        sku: 'malefootware',
+        description: 'Nice Uk monkstraps',
+        priceInCents: 1300,
+        tags:['classic','shoe','fashion'],
+        available: false,
+    }).save();
 })
 
-//testing error
+//testing error to be removed for production
 app.get('/fail',function(req,res) {
     throw new Error('nope')
 })
@@ -112,6 +150,12 @@ app.get('/epic-fail',function(req,res) {
     process.nextTick(function(){
         throw new Error('kaboom')
     })
+})
+//USING SESSIONS TO IMPLEMENT FLASH MESSAGES
+app.use(function(req,res,next){
+    res.locals.flash = req.session.flash;
+    delete req.session.flash;
+    next()
 })
 //ROUTES
 app.get ('/', function(req,res){
@@ -128,28 +172,34 @@ app.get('/about', function(req,res){
     pageTestScript :'/qa/test-about.js'
     })
 })
+app.get('/products',function(req,res){
+    product.find({available:true},function(err,products){
+        var context = {
+            products: products.map(function(product){
+                return {
+                    sku: product.sku,
+                    name: product.name,
+                    description: product.description,
+                    price: product.getDisplayPrice(),
+                    available: product.available,
+            }
+        })
+    }
+    res.render('test_products',context)
+})   
+})
 app.get('/thankyou',function(req,res){
-    res.status('303')
-    res.render('thankyou')
+res.status('303')
+res.render('thankyou')
 })
 //DASHBOARD ROUTES
 app.get('/admin',function(req,res){
-    res.render('admin_dashboard')
+res.render('admin_dashboard')
 })
 app.get('/login',function(req,res){
-    res.render('admin_login')
+res.render('admin_login')
 })
 
-//CONTACT FORM HANDLER
-app.post('/process',function(req,res){
-    console.log('form(from querystring) '+ req.query.form);
-    console.log('from hiddenfield ' + req.body._csrf);
-    console.log('Name from name field ' + req.body.contactName);
-    console.log('Email from form ' + req.body.contactEmail);
-    console.log('Subject ' + req.body.contactSubject);
-    console.log('Context ' + req.body.contentContext);
-    res.redirect( 303,'/thankyou')
-})
 //404 error
 app.use(function(req,res){
     res.status('404')
@@ -161,6 +211,23 @@ app.use(function(err,req,res,next){
     res.status('500');
     res.render('500')
 })
+
+//CONTACT FORM HANDLER
+app.post('/process',function(req,res){
+        console.log('form(from querystring) '+ req.query.form);
+        console.log('from hiddenfield ' + req.body._csrf);
+        console.log('Name from name field ' + req.body.contactName);
+        console.log('Email from form ' + req.body.contactEmail);
+        console.log('Subject ' + req.body.contactSubject);
+        console.log('Context ' + req.body.contentContext);
+        req.session.flash = {
+            type:'success',
+            intro: 'Validation success',
+            message: 'you\'ll receive a message from us shortly',
+        };
+        res.redirect( 303,'/thankyou')
+    }    
+)
 function startServer(){
     app.listen(app.get('port'),function(){
         console.log ('server has started on PORT' + app.get('env') + 'in' +

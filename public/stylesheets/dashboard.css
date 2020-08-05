@@ -3863,10 +3863,12 @@
   .nav-link {
     display: block;
     padding: 0.5rem 1rem;
+    cursor: pointer;
   }
   
   .nav-link:hover, .nav-link:focus {
     text-decoration: none;
+    background-color: rgb(179, 179, 247);
   }
   
   .nav-link.disabled {
@@ -9317,6 +9319,13 @@
   
   .text-uppercase, .dropdown .dropdown-menu .dropdown-header, .sidebar .sidebar-heading {
     text-transform: uppercase !important;
+  }
+  .sidebar-heading-extra{
+    text-transform: uppercase !important;
+    text-align: center;
+    padding: 0 1rem;
+    font-weight: 800;
+    font-size: 0.65rem;
   }
   
   .text-capitalize {

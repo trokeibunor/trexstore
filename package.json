@@ -22,7 +22,9 @@
     "mocha": "^7.2.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node trexstores.js",
+    "dev": "node trexstores_cluster.js"
   },
   "keywords": [
     "commerce"

@@ -1,7 +1,14 @@
+:root{
+    --font-family-sans-serif: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
 body{
     font: outline;
     font-style: italic;
-    font-family: cursive;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
 }
 .jumbotron-fluid{
     padding-bottom: 2rem;
@@ -48,6 +55,7 @@ body{
     background-color: rgb(63, 50, 33);
     background-size: contain;
     background-repeat: no-repeat;
+    font-size: small;
 }
 .review-submit{
     background-color: rgb(63, 50, 33);
@@ -91,4 +99,29 @@ body{
 }
 .media:hover{
     background-color: ivory;
+}
+.bg-login-image{
+    background-image: url(/images/armchair.jpg);
+    background-size: contain;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-blend-mode: lighten;
+    image-rendering: auto;
+    object-fit: contain;
+    height: auto;
+    width: auto;
+}
+.login-form{
+    background-color: bisque;
+}
+.login-button{
+    background-color: azure;
+    color: black
+}
+.product-card:hover{
+    transform: scale(1.2);
+}
+.dash-card:hover{
+    transform:scale(0.9)
 }
