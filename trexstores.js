@@ -3,6 +3,7 @@ var credentials = require('./public/lib/credentials.js');
 var emailService = require('./public/lib/email.js')(credentials);
 var app = express();
 var mongoose = require('mongoose');
+
 var product = require('./public/models/products.js');
 var opts = {
     server: {
@@ -10,16 +11,16 @@ var opts = {
     },
     useNewUrlParser:true,
     useUnifiedTopology:true,
-}
-app.set('port', process.env.PORT || 3000)
+};
+app.set('port', process.env.PORT || 3000);
 
 // HANDLEBARS SETUP
 var handlebars = require('express-handlebars')
     .create({ defaultLayout:'main',
     helpers: {
         section: function( name, options){
-            if(!this._sections) this._sections = {}
-            this._sections[name] = options.fn(this)
+            if(!this._sections) this._sections = {};
+            this._sections[name] = options.fn(this);
             return null;
         }
     }
@@ -43,12 +44,12 @@ switch(app.get('env')){
     case 'development' : 
         mongoose.connect(credentials.mongo.development.connectionString,opts)
             .then(()=>console.log('mongodb connected in development mode'))
-            .catch((err)=>console.log(err))
+            .catch((err)=>console.log(err));
         break;
     case 'production' :
         mongoose.connect(credentials.mongo.producton.connectionString,opts)
         .then(()=>console.log('mongodb connected in production mode'))
-        .catch((err)=>console.log(err))
+        .catch((err)=>console.log(err));
         break; 
     default :
         throw new Error('Unable to load enviroment: ' + app.get('env'));      
@@ -58,10 +59,10 @@ switch(app.get('env')){
 app.use(function(req,res,next){
     var domain = require('domain').create();
     domain.on('error',function(err){
-        console.error('DOMAIN CAUGHT ERROR /n' ,err.stack)
+        console.error('DOMAIN CAUGHT ERROR /n' ,err.stack);
         try {
             setTimeout(() => {
-                console.error('failsafe shutdown')
+                console.error('failsafe shutdown');
                 process.exit(1)
             }, 5000);
             var worker = require ('cluster').worker;
@@ -72,7 +73,7 @@ app.use(function(req,res,next){
             try {
                 next(err)
             } catch (err) {
-                console.log('Express server mechanism /n' ,err.stack)
+                console.log('Express server mechanism /n' ,err.stack);
                 res.statusCode = 500;
                 res.setHeader = ('content-type','text-plain');
                 res.end('Server error');
@@ -80,14 +81,15 @@ app.use(function(req,res,next){
         } catch (err) {
             console.error('Couldn\'t open 500 error', err.stack)
         }
-    })
+    });
     domain.add(req);
     domain.add(res);
     domain.run(next);
-})
+});
+
 app.use(express.static(__dirname + '/public'));
-app.use(require('body-parser')())
-app.use(require('cookie-parser')(credentials.cookiesecret))
+app.use(require('body-parser')());
+app.use(require('cookie-parser')(credentials.cookiesecret));
 app.use(require('express-session')());
 // CLUSTER checking
 app.use(function(req,res,next){
@@ -96,13 +98,13 @@ app.use(function(req,res,next){
         console.log('worker %d recieved request' + cluster.worker.id)
     }
     next();
-})
+});
 // PAGE testing
 app.use(function(req,res,next){
     res.locals.showTest = app.get('env') !== 'production' &&
-    req.query.test === '1'
+    req.query.test === '1';
     next()
-})
+});
 //test Products to be removed for production
 product.find(function(err,products){
     if(products.length){
@@ -140,94 +142,39 @@ product.find(function(err,products){
         tags:['classic','shoe','fashion'],
         available: false,
     }).save();
-})
+});
 
 //testing error to be removed for production
 app.get('/fail',function(req,res) {
     throw new Error('nope')
-})
+});
 app.get('/epic-fail',function(req,res) {
     process.nextTick(function(){
         throw new Error('kaboom')
     })
-})
+});
 //USING SESSIONS TO IMPLEMENT FLASH MESSAGES
 app.use(function(req,res,next){
     res.locals.flash = req.session.flash;
     delete req.session.flash;
     next()
-})
+});
 //ROUTES
-app.get ('/', function(req,res){
-    res.render('home');
-})
-app.get('/categories', function(req,res){
-    res.render('categories')
-})
-app.get('/contact',function(req,res){
-    res.render('contact', { csrf: 'csrf value goes here'})
-})
-app.get('/about', function(req,res){
-    res.render('about',{
-    pageTestScript :'/qa/test-about.js'
-    })
-})
-app.get('/products',function(req,res){
-    product.find({available:true},function(err,products){
-        var context = {
-            products: products.map(function(product){
-                return {
-                    sku: product.sku,
-                    name: product.name,
-                    description: product.description,
-                    price: product.getDisplayPrice(),
-                    available: product.available,
-            }
-        })
-    }
-    res.render('test_products',context)
-})   
-})
-app.get('/thankyou',function(req,res){
-res.status('303')
-res.render('thankyou')
-})
-//DASHBOARD ROUTES
-app.get('/admin',function(req,res){
-res.render('admin_dashboard')
-})
-app.get('/login',function(req,res){
-res.render('admin_login')
-})
-
+require('./routes.js')(app);
+// Form Handlers
+require('./form_handler')(app);
+// Catch-all error
 //404 error
 app.use(function(req,res){
-    res.status('404')
+    res.status('404');
     res.render('404')
-})
+});
 //500 error
 app.use(function(err,req,res,next){
     console.error(err.stack);
     res.status('500');
     res.render('500')
-})
-
-//CONTACT FORM HANDLER
-app.post('/process',function(req,res){
-        console.log('form(from querystring) '+ req.query.form);
-        console.log('from hiddenfield ' + req.body._csrf);
-        console.log('Name from name field ' + req.body.contactName);
-        console.log('Email from form ' + req.body.contactEmail);
-        console.log('Subject ' + req.body.contactSubject);
-        console.log('Context ' + req.body.contentContext);
-        req.session.flash = {
-            type:'success',
-            intro: 'Validation success',
-            message: 'you\'ll receive a message from us shortly',
-        };
-        res.redirect( 303,'/thankyou')
-    }    
-)
+});
 function startServer(){
     app.listen(app.get('port'),function(){
         console.log ('server has started on PORT' + app.get('env') + 'in' +

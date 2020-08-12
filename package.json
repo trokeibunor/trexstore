@@ -1,19 +1,23 @@
 {
   "name": "ecommerce",
   "version": "1.0.0",
-  "description": "website",
+  "description": "simple E-commerce website",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "busboy": "^0.3.1",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
     "express-logger": "0.0.3",
     "express-session": "^1.17.1",
+    "formidable": "^1.2.2",
     "loadtest": "^5.0.4",
     "mongoose": "^5.9.17",
     "morgan": "^1.10.0",
+    "multer": "^1.4.2",
     "nodemailer": "^6.4.8",
+    "nodemon": "^2.0.4",
     "vhost": "^3.0.2",
     "zombie": "^6.1.4"
   },
@@ -23,7 +27,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "start": "node trexstores.js",
+    "start": "nodemon trexstores.js",
     "dev": "node trexstores_cluster.js"
   },
   "keywords": [

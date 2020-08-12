@@ -1,65 +1,134 @@
 {{#section 'head'}}
-    <link rel="stylesheet" href="/stylesheets/categories.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/categories.css">
 {{/section}}
-<header class="categories-header">
-    <nav class="navbar navbar-dark">
-        <a class="navbar-brand">trEX stores</a>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-            <a href="/" class="btn btn-outline-light">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 576 512">
-                    <path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 
-                    16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67
-                    148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12
-                    12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15
-                    301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/>
-                </svg>
-            </a>
-        </form>
-    </nav>
-</header>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 col-md-3 col-lg-3 d-block bd-sidebar">
-            <div class="sidebar-sticky">
-               <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion-sidebar">
-                   <div class="sidebar-brand d-flex aligncontent-center">
-                       <br>
-                       <p class="lead">Categories<i class="fas fa-laugh-wink"></i></p>
-                   </div>
-                   <!-- Divider -->
-                    <hr>
-                      <!-- Heading -->
-                    <div class="sidebar-heading">
-                        <p class="text-muted">
-                            Shop
-                        </p>
-                    </div>
-                    <!-- Nav Item - Electronics -->
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Electronics</span></a>
-                    </li>
-                    <!-- Nav Item - Pages Collapse Menu -->
-                    <li class="nav-item accordion">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#fashion" aria-expanded="true" aria-controls="collapseTwo">
-                            <i class="fas fa-fw fa-cog"></i>
-                            <span>Fashion</span>
-                        </a>
-                        <div id="fashion" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Select section</h6>
-                            <a class="collapse-item" href="#">Male</a>
-                            <a class="collapse-item" href="#">Female</a>
-                            <a href="#" class="collapse-item">Children</a>
-                        </div>
-                        </div>
-                    </li>
-               </ul>
-            </div>
-        </div>
-    </div>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(63, 50, 33);font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;font-style:normal">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand text-white" href="#">TrexStores Categories</a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<div class="jumbotron-fluid store-head shadow">
+    <p class="text-center">
+         TrEx Stores
+        <p class="lead text-center text-mute small">the most convinient payment methods on the web</p>
+    </p>
 </div>
+<div id="page-info" class="bg-light my-2 text-center">
+  <p class="display-5">
+    <i class="fas fa-laugh-wink"></i>
+    Shop by Category
+  </p>
+</div>
+<main class="container-fluid wrapper my-3 bg-light">
+  <!--row one-->
+  <section class="row justify-content mx-auto my-4">
+    <div class="col-sm-6 col-md-3 my-1">
+      <div class="card bg-light shadow-sm text-white">
+        <img src="/images/classic.jpg" alt="Men's Fashion" class="card-img">
+        <div class="card-img-overlay">
+          <p class="lead text-right card-title">
+            Men's Fashion
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 my-1">
+      <div class="card bg-light shadow-sm text-white">
+        <img src="/images/converse_allstars.jpg" alt="Women's Fashion" class="card-img">
+        <div class="card-img-overlay">
+          <p class="lead text-right card-title">
+            Women's Fashion
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 my-1">
+      <div class="card bg-light shadow-sm text-white">
+        <img src="/images/sneakers.jpg" alt="Children's Fashion" class="card-img">
+        <div class="card-img-overlay">
+          <p class="lead text-right card-title">
+            Children's Fashion
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 my-1">
+      <div class="card bg-light shadow-sm text-white">
+        <img src="/images/apartment_chair.jpg" alt="Furniture" class="card-img">
+        <div class="card-img-overlay">
+          <p class="lead text-right card-title">
+            Furniture
+          </p>
+        </div>
+      </div>
+    </div>  
+  </section>
+  <!--row two-->
+  <section class="row justify-content mx-auto my-4">
+    <div class="col-sm-6 col-md-3 my-1">
+      <div class="card bg-light shadow-sm text-white">
+        <img src="/images/cooperate.jpg" alt="Utilites" class="card-img">
+        <div class="card-img-overlay">
+          <p class="lead text-right card-title">
+            Utilites
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 my-1">
+      <div class="card bg-light shadow-sm text-white">
+        <img src="/images/personpointing.jpg" alt="Sports" class="card-img">
+        <div class="card-img-overlay">
+          <p class="lead text-right card-title">
+            Sports
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 my-1">
+      <div class="card bg-light shadow-sm text-white">
+        <img src="/images/camera.jpg" alt="Gadgets" class="card-img">
+        <div class="card-img-overlay">
+          <p class="lead text-right card-title">
+            Gadgets
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 my-1">
+      <div class="card bg-light shadow-sm text-white">
+        <img src="/images/apple_products.jpg" alt="Mobile" class="card-img">
+        <div class="card-img-overlay">
+          <p class="lead text-right card-title">
+            Mobile and PC's
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{{#section 'javascript'}}
+  <script src="/javascripts/categories.js"></script>
+{{/section}}
+
 {{> footer}}
