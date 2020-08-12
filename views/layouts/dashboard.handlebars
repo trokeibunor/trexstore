@@ -24,6 +24,13 @@
     {{{_sections.head}}}
 </head>
 <body  class="hold-transition sidebar-mini">
+    <!-- TO USE SESSIONS TO DISPLAY FLASH MESSAGES-->
+    {{#if flash}}
+        <div class="alert alert-dismissable alert-{{flash.type}}">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>{{flash.header}}</strong> {{flash.message}}
+        </div>
+    {{/if}}
     <div class="wrapper">
 
     <!-- Navbar -->

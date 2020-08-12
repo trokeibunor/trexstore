@@ -163,7 +163,7 @@ app.use(function(req,res,next){
 require('./routes.js')(app);
 // Form Handlers
 require('./form_handler')(app);
-// Catch-all error
+// Catch-all errors
 //404 error
 app.use(function(req,res){
     res.status('404');
