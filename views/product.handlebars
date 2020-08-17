@@ -1,0 +1,108 @@
+ <header class="about-header p-0 my-mx-0">
+        <nav class="navbar navbar-dark">
+            <a class="navbar-brand">trEX stores</a>
+            <a href="/" class="text-white btn btn-outline-light">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 576 512" class="text-white">
+                <path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 
+                16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67
+                148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12
+                12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15
+                301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/>
+                </svg>
+            </a>
+        </nav>
+</header>
+{{#each products}}
+<div class="container-fluid">
+    <div class="card mt-2 px-4 bg-light">
+        <div class="row justify mt-2 mb-0">
+            <div class="col-sm-12 col-md-6 col-lg-6 mt-4">
+                <h3 class="font-bold ml-4"style="font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                font-style:normal">Product Name : {{ name }}</h3>
+                <img src="{{ image }}" alt="..."
+                class="img-fluid p-3" style="height:50%;width:100%;object-fit:cover;">
+                <br>
+                <hr>
+                <div class="row px-1 mb-1 mt-2">
+                    
+                    <div class="col-3">
+                        <img src="{{ image }}" alt="..." class="img-thumbnail" id="product_image">
+                    </div>
+                    <div class="col-3">
+                        <img src="{{ image }}" alt="..." class="img-thumbnail" id="product_image">
+                    </div>
+                    <div class="col-3">
+                        <img src="{{ image }}" alt="..." class="img-thumbnail" id="product_image">
+                    </div>
+                    <div class="col-3">
+                        <img src="{{ image }}" alt="..." class="img-thumbnail" id="product_image">
+                    </div>
+                </div>
+                <hr>
+                <div class="price_section">
+                     <h4 class="font-bold" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    font-style:normal">Price</h4>
+                    <div class="alert alert-info">
+                        ${{price}}.00 USD
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 mt-4">
+                <h4 class="font-bold" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                font-style:normal">{{slug }}</h4>
+                <hr>
+                <div class="description bg-info px-2 shadow" style="height: auto;">
+                    <h5 class="text-muted" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    font-style:normal;">Description <hr></h5>
+                    
+                    <p class="lead mt-4" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    font-style:normal;">
+                        {{description}}
+                    </p>
+                </div>
+                <hr>
+                <div class="color-section">
+                    <h4 class="font-bold m-2" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                    font-style:normal">Available color</h4>
+                    <hr>
+                    <div class="text-center m-2" style="width: 100%;height:50px; border-color:#000000">
+                        <div class="p-3" style="background-color: {{color}};"></div>
+                    </div>
+                </div>
+                <div class="size-section">
+                    <h4 class="font-bold m-2" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                    font-style:normal">Available Size</h4>
+                    <hr>
+                    <small class="text-muted">Size in US measurement</small>
+                    <div class="row">
+                        <div class="col-3 bg-light" style="border-color: #000000;">
+                            <p style="font-family: 'Times New Roman', Times, serif;font-weight:bolder">Size: {{size}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 product-share">
+                <a href="#" class="text-secondary">
+                  <i class="fab fa-facebook-square fa-2x"></i>
+                </a>
+                <a href="#" class="text-secondary">
+                  <i class="fab fa-twitter-square fa-2x"></i>
+                </a>
+                <a href="#" class="text-secondary">
+                  <i class="fas fa-envelope-square fa-2x"></i>
+                </a>
+                <a href="#" class="text-secondary">
+                  <i class="fas fa-rss-square fa-2x"></i>
+                </a>
+                </div>
+                <div class="product_tags">
+                    Tags : <span class="badge badge-secondary">{{tags}}</span>
+                </div>
+            </div>
+            
+            <button class="btn btn-lg  btn-block btn-info pt-2"><i class="fas fa-heart fa-lg mr-2"></i>Add to wishList</button>
+            <button class="btn btn-block btn-secondary btn-lg mb-2"><i class="fas fa-cart-plus fa-lg mr-2"></i>Add to Cart</button>
+        </div>
+    </div>  
+</div>
+{{/each}}

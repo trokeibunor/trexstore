@@ -5,16 +5,17 @@ var productschema = mongoose.Schema({
     slug: String,
     category: [String],
     sku: String,
+    color: String,
+    size: Number,
     description: String,
-    priceInCents: Number,
+    price: Number,
     tags: [String],
     available: Boolean,
     notes: String,
     packagesSold: Number,
+    path: String,
 });
-productschema.methods.getDisplayPrice = function(){
-    return '$' + (this.priceInCents/100).toFixed(2)
-}
+
 var product = mongoose.model('product',productschema);
 
 module.exports = product;

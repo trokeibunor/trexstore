@@ -96,7 +96,7 @@ body{
     border-radius: 50px;
 }
 .img-fluid:hover{
-    transform: scale(0.8);
+    transform: scale(1.1);
 }
 .media:hover{
     background-color: ivory;
@@ -125,4 +125,8 @@ body{
 }
 .dash-card:hover{
     transform:scale(0.9)
+}
+#product_image:hover{
+    background-color: bisque;
+    cursor: pointer;
 }

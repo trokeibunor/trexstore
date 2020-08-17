@@ -105,54 +105,8 @@ app.use(function(req,res,next){
     req.query.test === '1';
     next()
 });
-//test Products to be removed for production
-product.find(function(err,products){
-    if(products.length){
-        return;
-    }else{
-        console.log(err)
-    }
-    new product({
-        name: 'sneakers',
-        slug: 'nike',
-        categories:['fashion','best deals'],
-        sku: 'nike sneakers',
-        description: 'nike airforce',
-        priceInCents: 1300,
-        tags:['sneakers','shoe','fashion'],
-        available: true,
-    }).save();
-    new product({
-        name: 'brogues',
-        slug: 'nike',
-        categories:['fashion','best deals'],
-        sku: 'malefootware',
-        description: 'Nice london brogues',
-        priceInCents: 1300,
-        tags:['classic','shoe','fashion'],
-        available: true,
-    }).save();
-    new product({
-        name: 'monk straps',
-        slug: 'shoe',
-        categories:['fashion','best deals'],
-        sku: 'malefootware',
-        description: 'Nice Uk monkstraps',
-        priceInCents: 1300,
-        tags:['classic','shoe','fashion'],
-        available: false,
-    }).save();
-});
 
-//testing error to be removed for production
-app.get('/fail',function(req,res) {
-    throw new Error('nope')
-});
-app.get('/epic-fail',function(req,res) {
-    process.nextTick(function(){
-        throw new Error('kaboom')
-    })
-});
+
 //USING SESSIONS TO IMPLEMENT FLASH MESSAGES
 app.use(function(req,res,next){
     res.locals.flash = req.session.flash;
@@ -164,6 +118,7 @@ require('./routes.js')(app);
 // Form Handlers
 require('./form_handler')(app);
 // Catch-all errors
+
 //404 error
 app.use(function(req,res){
     res.status('404');

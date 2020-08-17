@@ -1,23 +1,39 @@
-// Owl Carousel Setup
-$(document).ready(function(){
-    $('.owl-carousel').owlCarousel({
-        loop:true,
-        margin:10,
-        responsiveClass:true,
-        responsive:{
-            0:{
-                items:1,
-                nav:true
-            },
-            600:{
-                items:3,
-                nav:false
-            },
-            1000:{
-                items:5,
-                nav:true,
-                loop:false
-            }
-        }
-    })
-  });
+//Categories Script Section
+// ROUTING
+var men = document.querySelector('.men');
+
+men.addEventListener('click',()=>{
+    window.location = '/male';
+});
+document.querySelector('.women').addEventListener('click',
+()=>{
+    window.location = '/female'
+})
+document.querySelector('.children').addEventListener('click',
+()=>{
+    window.location = '/children'
+})
+document.querySelector('.children').addEventListener('click',
+()=>{
+    window.location = '/children'
+})
+document.querySelector('.furniture').addEventListener('click',
+()=>{
+    window.location = '/furniture'
+})
+document.querySelector('.utilities').addEventListener('click',
+()=>{
+    window.location = '/utilities'
+})
+document.querySelector('.sports').addEventListener('click',
+()=>{
+    window.location = '/sports'
+})
+document.querySelector('.gadgets').addEventListener('click',
+()=>{
+    window.location = '/gadgets'
+})
+document.querySelector('.mobiles').addEventListener('click',
+()=>{
+    window.location = '/mobiles'
+})

@@ -1,5 +1,7 @@
 var express = require('express');
 var vhost = require('vhost');
+var product = require('./public/models/products');
+const { $where } = require('./public/models/products');
 
 module.exports = function(app){
     var admin  = express.Router();
@@ -15,21 +17,49 @@ module.exports = function(app){
         res.render('contact', { csrf: 'csrf value goes here'})
     });
     // routes for different categories
-    app.get(/sports|men_fashion|women_fashion|mobile|gadgets/,function(req,res){
+app.get(/sports|male|female|children|mobile|gadgets|utilities|furniture/,function(req,res){
         var pathName = req.path;
-        product.find({category:pathName},function(err,products){
+        var required = pathName.split('').slice(1).join('');
+        console.log(required);
+        product.find({available: true} ,function(err,products){
             var content = {
                 products: products.map(function(product){
-                    return {
-                        name:product.name,
-                        sku: product.sku,
-                        description:product.description,
-                        price: product.getDisplayPrice(),
-                        tags: product.tags,
+                    console.log(product.category)
+                    if(product.category.includes(required)){
+                        return {
+                            name:product.name,
+                            sku: product.sku,
+                            description:product.description,
+                            price: product.price,
+                            image: product.path,
+                            tags: product.tags,
+                        }
+                    } else if(err){
+                        console.log('category not found')
                     }
                 })
             };
             res.render('productCategories',content)
+        })
+    });
+    app.get('/product', (req,res)=>{
+        product.find({available: true},function(err,products){
+            var content = {
+                products : products.map(function(product){
+                    return{
+                        name: product.name,
+                        slug: product.slug,
+                        description: product.description,
+                        price: product.price,
+                        color: product.color,
+                        sku: product.sku,
+                        size: product.size,
+                        image: product.path,
+                        tags : product.tags.toString(),
+                    }
+                })
+            }
+            res.render('product',content)
         })
     });
     app.get('/about', function(req,res){
@@ -37,23 +67,6 @@ module.exports = function(app){
         pageTestScript :'/qa/test-about.js'
         })
     })
-    // routes for product page
-    app.get('/products',function(req,res){
-        product.find({available:true},function(err,products){
-            var context = {
-                products: products.map(function(product){
-                return {
-                    sku: product.sku,
-                    name: product.name,
-                    description: product.description,
-                    price: product.getDisplayPrice(),
-                    available: product.available,
-                }
-            })
-        };
-        res.render('test_products',context)
-        })
-    });
     app.get('/thankyou',function(req,res){
         res.status('303');
         res.render('thankyou')
@@ -71,7 +84,24 @@ module.exports = function(app){
     res.render('admin/home_admin', {layout: 'dashboard'})
     });
     admin.get('/product',function (req,res) {
-        res.render('admin/product',{layout: 'dashboard'});
+        product.find({available: true},function(err,products){
+            var content = {
+                products : products.map(function(product){
+                    return{
+                        name: product.name,
+                        slug: product.slug,
+                        description: product.description,
+                        price: product.price,
+                        color: product.color,
+                        sku: product.sku,
+                        size: product.size,
+                        image: product.path,
+                        tags : product.tags.toString(),
+                    }
+                })
+            }
+            res.render('admin/product',{layout: 'dashboard'},content);
+        })
     });
     app.get('/add-product',function (req,res) {
         res.render('admin/add_product',{layout:'dashboard'})
