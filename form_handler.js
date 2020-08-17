@@ -24,12 +24,6 @@ module.exports = function (app){
     admin.post('/process-product',upload.single('product_image'),function(req,res,next){
         var path = req.file.path;
         const reqPath = path.split('\\').slice(1).join('\\');
-        // var newaAr = ar.slice();
-        // var reqPath = newaAr.toString();
-        if(req.file){
-            console.log('image uploaded')
-            
-        }else(console.log ('error parsing image'))
         var categories_array = [req.body.c_male,req.body.c_women,req.body.c_children,req.body.c_furniture,req.body.c_sports,req.body.c_utilities,req.body.c_gadgets,req.body.c_mobile].filter(sort); 
         var tags_array = [req.body.t_male,req.body.t_women,req.body.t_children,req.body.t_furniture,req.body.t_sports,req.body.t_utilities,req.body.t_gadgets,req.body.t_mobile].filter(sort);
         var UIproduct = new Object({

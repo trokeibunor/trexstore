@@ -1,0 +1,80 @@
+<div class="row justify">
+    <div class="col-12">
+        <h5 class="text-left font-bold">
+            #Product Page
+        </h5>
+    </div>          
+</div>
+<div class="row justify">
+    <div class="col-12 mt-2">
+        <h6 class="text-left font-bold">
+            #Current categories
+        </h6>
+    </div>
+</div>
+<div class="row justify">
+    <ul class="list-group-list-group-horizontal col-12">
+        <div class="row">
+            <li class="list-group-item col-sm-6 col-md-3">
+                Men's Fashion
+            </li>
+            <li class="list-group-item col-sm-6 col-md-3">
+                Women's Fashion
+            </li>
+            <li class="list-group-item col-sm-6 col-md-3">
+                Children
+            </li>
+            <li class="list-group-item col-sm-6 col-md-3">
+                Sports
+            </li>
+        </div>
+        <div class="row">
+            <li class="list-group-item col-sm-6 col-md-3">
+                Furnitures
+            </li>
+            <li class="list-group-item col-sm-6 col-md-3">
+                Utilites
+            </li>
+            <li class="list-group-item col-sm-6 col-md-3">
+                Gadgets
+            </li>
+            <li class="list-group-item col-sm-6 col-md-3">
+                Mobiles & PC's
+            </li>
+        </div>
+    </ul>
+</div>
+<div class="row justify mt-4">
+    <div class="col-12">
+        <h5 class="text-left">
+            #Product List
+        </h5>
+    </div>
+</div>
+
+<table class="table table-hover table-stripped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">category</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Price</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each product}}
+            <tr>
+                <th scope="row">{{}}</th>
+                <td>{{name}}</td>
+                <td>{{category}}</td>
+                <td>{{sku}}</td>
+                <td>{{price}}</td>
+                <td><i class="far fa-edit"></i></td>
+                <td><i class="far fa-trash-alt"></i></td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
