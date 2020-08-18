@@ -89,7 +89,23 @@ module.exports = function(app){
         res.render('admin/add_product', {layout: 'dashboard'})
     });
     admin.get('/product',function (req,res) {
-        res.render('admin/product',{layout:'dashboard'})
+        product.find({available: true},function(err,products){
+            var content = {
+                products : products.map(function(product){
+                    return{
+                        id: product.id,
+                        name: product.name,
+                        slug: product.slug,
+                        category: product.category.toString(),
+                        price: product.price,
+                        color: product.color,
+                        sku: product.sku,
+                    }
+                }),
+                layout: 'dashboard',
+            }   
+            res.render('admin/product',content)
+        })
     });
     admin.get('/sales',(req,res)=>{
         res.render('admin/view_sales',{layout:'dashboard'})

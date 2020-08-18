@@ -51,30 +51,32 @@
         </h5>
     </div>
 </div>
-
-<table class="table table-hover table-stripped">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">Name</th>
-            <th scope="col">category</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Price</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each product}}
-            <tr>
-                <th scope="row">{{}}</th>
-                <td>{{name}}</td>
-                <td>{{category}}</td>
-                <td>{{sku}}</td>
-                <td>{{price}}</td>
-                <td><i class="far fa-edit"></i></td>
-                <td><i class="far fa-trash-alt"></i></td>
-            </tr>
-        {{/each}}
-    </tbody>
-</table>
+<div class="table-responsive">
+    
+        <table class="table table-hover table-stripped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">index</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">category</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            {{#each products}}
+            <tbody>
+                <tr>
+                    <th scope="row">{{id}}</th>
+                    <td>{{name}}</td>
+                    <td>{{category}}</td>
+                    <td>{{sku}}</td>
+                    <td>${{price}}.00</td>
+                    <td><button class="btn btn-link"><i class="far fa-edit"></i></button></td>
+                    <td><button class="btn btn-link"><i class="far fa-trash-alt"></i></button></td>
+                </tr>
+            </tbody>
+            {{/each}}
+        </table>
+</div>
