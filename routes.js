@@ -88,6 +88,47 @@ module.exports = function(app){
     admin.get('/add-product',function (req,res) {
         res.render('admin/add_product', {layout: 'dashboard'})
     });
+    admin.get('/edit-product',(req,res)=>{
+        product.find({available: true , _id : req.query.id},function(err,products){
+            var content = {
+                products : products.map(function(product){
+                    return{
+                        id: product.id,
+                        name: product.name,
+                        slug: product.slug,
+                        size: product.size,
+                        price: product.price,
+                        color: product.color,
+                        sku: product.sku,
+                        description: product.description,
+                    }
+                }),
+                layout: 'dashboard',
+            }   
+            res.render('admin/edit_product',content)
+        })
+    })
+    admin.get('/delete-product',(req,res)=>{
+        console.log(req.query.id)
+        product.remove({_id : req.query.id},function(err){
+            if(err){
+                console.log(err)
+                req.session.flash = {
+                    type: 'warning',
+                    intro: 'validation failure',
+                    message: 'Product NOT deleted'
+                }
+            }else{
+                req.session.flash = {
+                    type:'danger',
+                    intro: 'Validation success',
+                    message: 'Product Deleted',
+                };
+                res.redirect('/product')
+            }
+        })
+        
+    });
     admin.get('/product',function (req,res) {
         product.find({available: true},function(err,products){
             var content = {

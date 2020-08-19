@@ -73,8 +73,8 @@
                     <td>{{category}}</td>
                     <td>{{sku}}</td>
                     <td>${{price}}.00</td>
-                    <td><button class="btn btn-link"><i class="far fa-edit"></i></button></td>
-                    <td><button class="btn btn-link"><i class="far fa-trash-alt"></i></button></td>
+                    <td><a href="/edit-product?id={{id}}" class="btn btn-link edit-button"><i class="far fa-edit"></i></a></td>
+                    <td><a href="/delete-product?id={{id}}" class="btn btn-link delete-button"><i class="far fa-trash-alt"></i></a></td>
                 </tr>
             </tbody>
             {{/each}}

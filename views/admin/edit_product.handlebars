@@ -1,0 +1,194 @@
+{{#each products}}
+    <form action="/process-edit-product?product={{id}}" role="form" enctype="multipart/form-data" method="post">
+        <h5 class="text-left" id="product_form_header">Edit Product ({{id}})</h5>
+        <div class="alert alert-info"><strong>Please do well to reselect the categories and tags that apply to product</strong></div>
+        <div class="card">
+            <div class="form-row mt-4">
+                <div class="col-10 mx-auto">
+                    <div class="form-group">
+                        <label for="product-name">Name</label>
+                        <input type="text" name="name" id="product-name" class="form-control" value="{{name}}" required> 
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-10 mx-auto">
+                    <div class="form-group">
+                        <label for="product-slug">Slug</label>
+                        <input type="text" name="slug" id="product-slug" class="form-control" value="{{slug}}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-10 mx-auto">
+                    <div class="form-row">
+                        <div class="col-sm-10 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="product-sku">Stock</label>
+                            <input type="number" name="sku" id="product-sku" class="form-control" value="{{sku}}" required>
+                        </div>
+                        </div>
+                        <div class="col-sm-10 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="product-price">Price</label>
+                            <input type="number" name="price" id="product-price" class="form-control" value="{{price}}" placeholder="Price in USD" required>
+                        </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="form-row">
+                <div class="col-10 mx-auto">
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="product-size">Size</label>
+                                <input type="number" name="size" id="product-size" 
+                                class="form-control" value="{{size}}" placeholder="Size in US size chart">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="product-color">Colour</label>
+                                <input type="color" name="color" value="{{color}}" id="product-color" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-10 mx-auto">
+                    <label>Categories</label>
+                </div>
+                <div class="col-10 mx-auto">
+                    <div class="form-row">
+                        <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="male" name="c_male" value="Male">
+                            <label for="male" class="form-check-label">Male</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="female" name="c_women" value="female">
+                            <label for="female" class="form-check-label">Female</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="male" name="c_children" value="children">
+                            <label for="children" class="form-check-label">Children</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="furniture" name="c_furniture" value="furniture">
+                            <label for="furniture" class="form-check-label">Furniture</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="sports" name="c_sports" value="sports">
+                            <label for="sport" class="form-check-label">Sports</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="utilities" name="c_utilities" value="utilities">
+                            <label for="utilities" class="form-check-label">Utilities</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="gadgets" name="c_gadgets" value="gadgets">
+                            <label for="gadgets" class="form-check-label">Gadgets</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="mobiles" name="c_mobiles" value="mobiles">
+                            <label for="mobiles" class="form-check-label">Communications</label>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-10 mx-auto">
+                    <label>Tags</label>
+                </div>
+                <div class="col-10 mx-auto">
+                    <div class="form-row">
+                        <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="male" name="t_male" value="Male">
+                            <label for="male" class="form-check-label">Male</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="female" name="t_women" value="women">
+                            <label for="female" class="form-check-label">Female</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="male" name="t_children" value="children">
+                            <label for="children" class="form-check-label">Children</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="furniture" name="t_furniture" value="furniture">
+                            <label for="furniture" class="form-check-label">Furniture</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="sports" name="t_sports" value="sports">
+                            <label for="sport" class="form-check-label">Sports</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="utilities" name="t_utilities" value="utilities">
+                            <label for="utilities" class="form-check-label">Utilities</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="gadgets" name="t_gadgets" value="gadgets">
+                            <label for="gadgets" class="form-check-label">Gadgets</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="mobiles" name="t_mobiles" value="mobiles">
+                            <label for="mobiles" class="form-check-label">Communications</label>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-10 mx-auto">
+                    <div class="form-group">
+                        <label for="product_description">Description</label>
+                        <textarea name="description" id="product_description" 
+                        class="form-control" cols="30" rows="5">{{description}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-10 mx-auto">
+                    <div class="form-group">
+                        <label for="product_image">Please select image</label>
+                        <input type="file" name="product_image" id="product_image" 
+                        class="form-file-control" accept="image/*"> 
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Upload" class="col-10 mx-auto mb-4">
+        </div>
+    </form> 
+{{/each}}
