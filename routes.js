@@ -28,6 +28,7 @@ module.exports = function(app){
                         console.log(product.category)
                         if(product.category.includes(required)){
                             return {
+                                id: product.id,
                                 name:product.name,
                                 sku: product.sku,
                                 description:product.description,
@@ -41,11 +42,11 @@ module.exports = function(app){
                         }
                     })
                 };
-                res.render('productCategories',content)
+                res.render('categories_product',content)
             })
         });
-    app.get('/product', (req,res)=>{
-        product.find({available: true},function(err,products){
+    app.get('/product_view', (req,res)=>{
+        product.find({available: true, _id: req.query.id},function(err,products){
             var content = {
                 products : products.map(function(product){
                     return{
@@ -61,7 +62,7 @@ module.exports = function(app){
                     }
                 })
             }
-            res.render('product',content)
+            res.render('product_view',content)
         })
     });
     app.get('/about', function(req,res){
